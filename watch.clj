@@ -19,8 +19,11 @@
       false)
     true))
 
+(defn revert []
+  (shell "git reset --hard"))
+
 (loop []
   (when-not (act)
-    (prn :boom))
+    (revert))
   (wait)
   (recur))
