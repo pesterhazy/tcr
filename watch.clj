@@ -22,8 +22,13 @@
 (defn revert []
   (shell "git reset --hard"))
 
+(defn commit []
+  (shell "git add tcr.mjs")
+  (shell "git commit"))
+
 (loop []
-  (when-not (act)
+  (if (act)
+    (commit)
     (revert))
   (wait)
   (recur))
