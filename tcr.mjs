@@ -5,4 +5,5 @@ function splitWithEOL(s) {
 }
 
 assert.deepEqual([], splitWithEOL(""));
+//assert.deepEqual(["a"], splitWithEOL("a"));
 console.log("ok");
