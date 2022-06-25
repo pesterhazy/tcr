@@ -1,9 +1,9 @@
 import * as assert from "node:assert/strict";
 
 function splitWithEOL(s) {
-  return [];
+  return s.split(/\n/);
 }
 
-assert.deepEqual([], splitWithEOL(""));
+assert.deepEqual([""], splitWithEOL(""));
 //assert.deepEqual(["a"], splitWithEOL("a"));
 console.log("ok");
