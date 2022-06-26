@@ -11,6 +11,8 @@ function rpn(s) {
       break;
 
     case "-":
+      if (args.length !== 2)
+        throw new Error("Must be binary");
       args = [args[0]-args[1]];
       break;
 
