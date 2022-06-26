@@ -23,6 +23,9 @@ function rpn(s) {
 
       break;
 
+    case "MAX":
+      break;
+
     default:
       args.push(parseInt(token));
     }
@@ -34,3 +37,4 @@ assert.deepEqual(rpn("1 2 +"), 3);
 assert.deepEqual(rpn("1 2 + 3 +"), 6);
 assert.deepEqual(rpn("2 1 -"), 1);
 assert.deepEqual(rpn("1 -"), -1);
+//assert.deepEqual(rpn("5 3 4 2 9 1 MAX"), 9);
