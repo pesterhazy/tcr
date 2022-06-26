@@ -10,13 +10,11 @@
   (assert (vector? v))
   (= 0 (:exit @(process v {:inherit true}))))
 
-(def !watch-process (atom nil))
+(defn make-waiter []
+  {:process (process ["watchexec" "-p" "-w" "tcr.mjs" "echo" "."])})
 
-(defn wait []
-  (when-not @!watch-process
-    (reset! !watch-process (process ["watchexec" "-p" "-w" "tcr.mjs" "echo" "."])))
-
-  (.readLine (io/reader (:out @!watch-process))))
+(defn wait [waiter]
+  (.readLine (io/reader (:out (:process waiter)))))
 
 (defn act []
   (println "Running...")
@@ -36,11 +34,15 @@
                 "build/sounds/fail.wav")]
     (process ["mpv" "--quiet" fname])))
 
-(loop []
-  (let [result (act)]
-    (notify result)
-    (if result
-      (commit)
-      (revert)))
-  (wait)
-  (recur))
+(defn main []
+  (let [waiter (make-waiter)]
+    (loop []
+      (let [result (act)]
+        (notify result)
+        (if result
+          (commit)
+          (revert)))
+      (wait waiter)
+      (recur))))
+
+(main)

@@ -1,2 +1,1 @@
-- git reset only source files
 - double notification trouble
