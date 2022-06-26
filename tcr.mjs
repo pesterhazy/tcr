@@ -8,9 +8,8 @@ function find(s) {
   let r = /((?!\n).*)\n/y;
   let m = r.exec(s);
   let match= m[0];
-  console.log(r.lastIndex);
 
-  return [match,"b"];
+  return [match,s.slice(r.lastIndex)];
 }
 
 assert.deepEqual(["a\n","b"],find("a\nb"));
