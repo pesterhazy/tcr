@@ -11,7 +11,7 @@ function find(s) {
     let match = m[0];
 
     return [match,s.slice(r.lastIndex)];
-  } while (true);
+  } while (1);
 }
 
 assert.deepEqual(["a\n","b"],find("a\nb"));
