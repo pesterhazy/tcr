@@ -8,6 +8,7 @@ function find(s) {
   let r = /((?!\n).*)\n/;
   let m = r.exec(s);
   let match= m[0];
+  console.log(m.lastIndex);
 
   return [match,"b"];
 }
