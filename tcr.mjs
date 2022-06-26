@@ -33,4 +33,4 @@ function rpn(s) {
 assert.deepEqual(rpn("1 2 +"), 3);
 assert.deepEqual(rpn("1 2 + 3 +"), 6);
 assert.deepEqual(rpn("2 1 -"), 1);
-// assert.deepEqual(rpn("1 -"), -1);
+assert.deepEqual(rpn("1 -"), -1);
