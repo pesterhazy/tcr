@@ -26,5 +26,6 @@ function splitWithEOL(s) {
 
 assert.deepEqual([""], splitWithEOL(""));
 assert.deepEqual(["a"], splitWithEOL("a"));
+assert.deepEqual(["a\n", "b"], splitWithEOL("a\nb"));
 assert.deepEqual(["a\r\n", "b"], splitWithEOL("a\r\nb"));
 console.log("ok");
