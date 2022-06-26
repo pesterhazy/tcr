@@ -10,6 +10,10 @@ function rpn(s) {
       args = [args.reduce((a,b) => a+b, 0)];
       break;
 
+    case "*":
+      args = [args.reduce((a,b) => a*b, 0)];
+      break;
+
     case "-":
       if (args.length === 2) {
         args = [args[0]-args[1]];
