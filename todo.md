@@ -1,1 +1,2 @@
-- refactor watch script, improve bb code
+- git reset only source files
+- double notification trouble

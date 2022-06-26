@@ -23,7 +23,8 @@
   (sh?! ["node" "tcr.mjs"]))
 
 (defn revert []
-  (sh! ["git" "reset" "--hard"]))
+  (println "Resetting...")
+  (sh! ["git" "checkout" "--" "tcr.mjs"]))
 
 (defn commit []
   (sh! ["git" "add" "tcr.mjs"])
