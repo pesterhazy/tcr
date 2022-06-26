@@ -11,10 +11,11 @@ function rpn(s) {
       break;
 
     case "-":
-      if (args.length !== 2)
+      if (args.length === 2)
+        args = [args[0]-args[1]];
+      else
         throw new Error("Must be binary");
 
-      args = [args[0]-args[1]];
       break;
 
     default:
@@ -27,3 +28,4 @@ function rpn(s) {
 assert.deepEqual(rpn("1 2 +"), 3);
 assert.deepEqual(rpn("1 2 + 3 +"), 6);
 assert.deepEqual(rpn("2 1 -"), 1);
+// assert.deepEqual(rpn("1 -"), -1);
