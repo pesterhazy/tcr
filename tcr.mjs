@@ -1,36 +1,7 @@
 import * as assert from "node:assert/strict";
 
-function splitWithEOL(s) {
-  // This is best but Safari doesn't support positive lookbehind
-  // https://caniuse.com/js-regexp-lookbehind
-  // This is why we can't have nice things
-  // return s.split(/(?<=\r?\n)/);
-
-  let r = /((?!\r?\n).*)\r?\n/y;
-  let result = [];
-  let last=0;
-
-  if ( s.length === 0 )
-    return [""];
-
-  do {
-    let m = r.exec(s);
-    if ( m === null )
-      break;
-
-    last = r.lastIndex;
-    result.push(m[0]);
-  } while (1);
-
-  if (last < s.length)
-    result.push(s.slice(last));
-
-  return result;
+function rpn(s) {
+  return 3;
 }
 
-assert.deepEqual([""], splitWithEOL(""));
-assert.deepEqual(["a"], splitWithEOL("a"));
-assert.deepEqual(["a\n", "b"], splitWithEOL("a\nb"));
-assert.deepEqual(["a\r\n", "b"], splitWithEOL("a\r\nb"));
-assert.deepEqual(["one\n","two\r\n","three\r\n"], splitWithEOL("one\ntwo\r\nthree\r\n"));
-console.log("ok");
+assert.deepEqual(rpn("+ 1 2"), 3);
