@@ -25,7 +25,7 @@
 (defn commit []
   (shell "git add tcr.mjs")
   (try
-    (shell "git commit")
+    (shell "git commit -m autocommit")
     (catch clojure.lang.ExceptionInfo e
       (when-not (:exit (ex-data e))
         (throw e)))))
