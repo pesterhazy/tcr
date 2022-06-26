@@ -2,7 +2,7 @@
 
 (defn shell [v]
   (assert (vector? v))
-  (-> (process {:inherit true} v)
+  (-> (process v {:inherit true})
       check))
 
 (def !watch-process (atom nil))
