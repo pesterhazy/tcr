@@ -9,6 +9,9 @@ function find(s) {
   let result = [];
   let last=0;
 
+  if ( s.length === 0 )
+    return [""];
+
   do {
     let m = r.exec(s);
     if ( !m )
