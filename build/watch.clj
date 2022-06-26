@@ -11,10 +11,19 @@
   (= 0 (:exit @(process v {:inherit true}))))
 
 (defn make-waiter []
-  {:process (process ["watchexec" "-p" "-w" "tcr.mjs" "echo" "."])})
+  (let [proc (process ["watchexec" "-p" "-w" "tcr.mjs" "echo" "."])
+        rdr (io/reader (:out proc))
+        q (java.util.concurrent.LinkedBlockingQueue.)]
+    (future
+      (loop []
+        (.readLine rdr)
+        (.put q ".")
+        (recur)))
+    {:process proc
+     :q q}))
 
 (defn wait [waiter]
-  (.readLine (io/reader (:out (:process waiter)))))
+  (.take (:q waiter)))
 
 (defn act []
   (println "Running...")
