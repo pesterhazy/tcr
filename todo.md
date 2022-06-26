@@ -1,0 +1,3 @@
+- sound effects for TCR
+- move watch script to scripts/
+- refactor watch script, improve bb code

@@ -30,9 +30,17 @@
       (when-not (:exit (ex-data e))
         (throw e)))))
 
+(defn notify [success?]
+  (let [fname (if success?
+                "build/sounds/success.wav"
+                "build/sounds/fail.wav")]
+    (process ["mpv" "--quiet" fname])))
+
 (loop []
-  (if (act)
-    (commit)
-    (revert))
+  (let [result (act)]
+    (notify result)
+    (if result
+      (commit)
+      (revert)))
   (wait)
   (recur))
