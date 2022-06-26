@@ -7,7 +7,7 @@ function rpn(s) {
   for (let token of tokens) {
     switch (token) {
     case "+":
-      break;
+      return args.reduce((a,b) => a+b, 0);
 
     default:
       args.push(parseInt(token));
