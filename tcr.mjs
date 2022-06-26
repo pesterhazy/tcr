@@ -28,7 +28,8 @@ function rpn(s) {
       break;
 
     default:
-      args.push(parseInt(token));
+      let v=parseInt(token);
+      args.push(v);
     }
   }
   return args[0];
