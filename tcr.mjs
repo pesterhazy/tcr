@@ -13,9 +13,6 @@ function rpn(s) {
       args.push(parseInt(token));
     }
   }
-  args[0] = parseInt(tokens[0]);
-  args[1] = parseInt(tokens[1]);
-  return args[0] + args[1];
 }
 
 assert.deepEqual(rpn("1 2 +"), 3);
