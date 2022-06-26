@@ -1,9 +1,13 @@
 (require '[babashka.process :refer [process check]])
 
-(defn shell [v]
+(defn sh! [v]
   (assert (vector? v))
   (-> (process v {:inherit true})
       check))
+
+(defn sh?! [v]
+  (assert (vector? v))
+  (= 0 (:exit @(process v {:inherit true}))))
 
 (def !watch-process (atom nil))
 
@@ -16,15 +20,14 @@
 
 (defn act []
   (println "Running...")
-  (let [proc @(process ["node" "tcr.mjs"] {:inherit true})]
-    (= 0 (:exit proc))))
+  (sh?! ["node" "tcr.mjs"]))
 
 (defn revert []
-  (shell ["git" "reset" "--hard"]))
+  (sh! ["git" "reset" "--hard"]))
 
 (defn commit []
-  (shell ["git" "add" "tcr.mjs"])
-  @(process ["git" "commit" "-m" "autocommit"] {:inherit true}))
+  (sh! ["git" "add" "tcr.mjs"])
+  (sh?! ["git" "commit" "-m" "autocommit"]))
 
 (defn notify [success?]
   (let [fname (if success?
