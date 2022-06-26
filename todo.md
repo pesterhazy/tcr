@@ -1,1 +1,3 @@
 - parametrize watch script
+- try it in clojure
+- make it work with eglot
