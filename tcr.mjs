@@ -8,6 +8,9 @@ function find(s) {
   let r = /((?!\n).*)\n/y;
   do {
     let m = r.exec(s);
+    if ( !m )
+      break;
+
     let match = m[0];
 
     return [match,s.slice(r.lastIndex)];
