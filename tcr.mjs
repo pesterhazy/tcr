@@ -7,7 +7,7 @@ function splitWithEOL(s) {
 function find(s) {
   let r = /((?!\n).*)\n/y;
   let result = [];
-  let last=1;
+  let last=0;
 
   do {
     let m = r.exec(s);
