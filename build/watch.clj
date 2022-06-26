@@ -16,7 +16,7 @@
 
 (defn act []
   (println "Running...")
-  (let [proc @(process ["node" "tcr.mjs"])]
+  (let [proc @(process ["node" "tcr.mjs"] {:inherit true})]
     (= 0 (:exit proc))))
 
 (defn revert []
