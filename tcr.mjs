@@ -45,3 +45,4 @@ assert.deepEqual(rpn("2 1 -"), 1);
 assert.deepEqual(rpn("1 -"), -1);
 assert.deepEqual(rpn("5 3 4 2 9 1 MAX"), 9);
 assert.throws(()=>rpn("$"), /invalid operation/);
+//assert.deepEqual(rpn("3 2 *"), 6);
