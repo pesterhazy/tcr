@@ -1,6 +1,8 @@
 import * as assert from "node:assert/strict";
 
 function splitWithEOL(s) {
+  return s.split(/(?<=\r?\n)/);
+
   let r = /((?!\r?\n).*)\r?\n/y;
   let result = [];
   let last=0;
