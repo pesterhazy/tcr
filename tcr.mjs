@@ -24,6 +24,7 @@ function rpn(s) {
       break;
 
     case "MAX":
+      args = [args.reduce((a,b) => Math.max(a,b), 0)];
       break;
 
     default:
