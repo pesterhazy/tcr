@@ -29,6 +29,10 @@ function rpn(s) {
 
     default:
       let v=parseInt(token);
+
+      if ( isNaN(v) )
+        throw new Error("invalid operation: "+token);
+
       args.push(v);
     }
   }
