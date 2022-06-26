@@ -6,10 +6,12 @@ function splitWithEOL(s) {
 
 function find(s) {
   let r = /((?!\n).*)\n/y;
+  do {
   let m = r.exec(s);
   let match = m[0];
 
   return [match,s.slice(r.lastIndex)];
+  } while (true);
 }
 
 assert.deepEqual(["a\n","b"],find("a\nb"));
