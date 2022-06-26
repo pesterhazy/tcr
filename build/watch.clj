@@ -25,6 +25,9 @@
 (defn wait [waiter]
   (.take (:q waiter)))
 
+(defn reset-waiter [waiter]
+  (.clear (:q waiter)))
+
 (defn act []
   (println "Running...")
   (sh?! ["node" "tcr.mjs"]))
@@ -50,7 +53,11 @@
         (notify result)
         (if result
           (commit)
-          (revert)))
+          (do
+            (revert)
+            (Thread/sleep 600)
+            (reset-waiter waiter))))
+      (println "Waiting...")
       (wait waiter)
       (recur))))
 
