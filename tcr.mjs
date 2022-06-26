@@ -3,6 +3,7 @@ import * as assert from "node:assert/strict";
 function splitWithEOL(s) {
   // This is best but Safari doesn't support positive lookbehind
   // https://caniuse.com/js-regexp-lookbehind
+  // This is why we can't have nice things
   // return s.split(/(?<=\r?\n)/);
 
   let r = /((?!\r?\n).*)\r?\n/y;
