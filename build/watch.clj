@@ -16,24 +16,15 @@
 
 (defn act []
   (println "Running...")
-  (try
-    (shell ["node" "tcr.mjs"])
-    (catch clojure.lang.ExceptionInfo e
-      (when-not (:exit (ex-data e))
-        (throw e))
-      false)
-    true))
+  (let [proc @(process ["node" "tcr.mjs"])]
+    (= 0 (:exit proc))))
 
 (defn revert []
   (shell ["git" "reset" "--hard"]))
 
 (defn commit []
   (shell ["git" "add" "tcr.mjs"])
-  (try
-    (shell ["git" "commit" "-m" "autocommit"])
-    (catch clojure.lang.ExceptionInfo e
-      (when-not (:exit (ex-data e))
-        (throw e)))))
+  @(process ["git" "commit" "-m" "autocommit"] {:inherit true}))
 
 (defn notify [success?]
   (let [fname (if success?
