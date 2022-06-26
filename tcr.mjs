@@ -10,7 +10,7 @@ function splitWithEOL(s) {
 
   do {
     let m = r.exec(s);
-    if ( !m )
+    if ( m === null )
       break;
 
     last = r.lastIndex;
