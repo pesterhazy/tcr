@@ -27,7 +27,6 @@ function find(s) {
 
 assert.deepEqual(["a\n","b"],find("a\nb"));
 
-
 assert.deepEqual([""], splitWithEOL(""));
 assert.deepEqual(["a"], splitWithEOL("a"));
 //assert.deepEqual(["a\n", "b"], splitWithEOL("a\nb"));
