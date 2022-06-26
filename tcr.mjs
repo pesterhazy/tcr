@@ -7,10 +7,12 @@ function splitWithEOL(s) {
 function find(s) {
   let r = /((?!\n).*)\n/;
   let m = r.exec(s);
-  return m[0];
+  let match= m[0];
+
+  return [match,"b"];
 }
 
-assert.deepEqual("a\n",find("a\nb"));
+assert.deepEqual(["a\n","b"],find("a\nb"));
 
 
 assert.deepEqual([""], splitWithEOL(""));
