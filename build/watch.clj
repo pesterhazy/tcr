@@ -10,7 +10,7 @@
   (assert (vector? v))
   (= 0 (:exit @(process v {:inherit true}))))
 
-(defn make-waiter []
+(defn make-watcher []
   (let [proc (process ["watchexec" "-p" "-w" "tcr.mjs" "echo" "."])
         rdr (io/reader (:out proc))
         q (java.util.concurrent.LinkedBlockingQueue.)]
@@ -22,10 +22,10 @@
     {:process proc
      :q q}))
 
-(defn wait [waiter]
+(defn wait-watcher [waiter]
   (.take (:q waiter)))
 
-(defn reset-waiter [waiter]
+(defn reset-watcher [waiter]
   (.clear (:q waiter)))
 
 (defn act []
@@ -47,7 +47,7 @@
     (process ["mpv" "--quiet" fname])))
 
 (defn main []
-  (let [waiter (make-waiter)]
+  (let [watcher (make-watcher)]
     (loop []
       (let [result (act)]
         (notify result)
@@ -56,9 +56,9 @@
           (do
             (revert)
             (Thread/sleep 600)
-            (reset-waiter waiter))))
+            (reset-watcher watcher))))
       (println "Waiting...")
-      (wait waiter)
+      (wait-watcher watcher)
       (recur))))
 
 (main)
