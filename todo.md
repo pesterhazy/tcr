@@ -1,1 +1,1 @@
-- double notification trouble
+- parametrize watch script
