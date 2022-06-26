@@ -14,7 +14,6 @@ function splitWithEOL(s) {
       break;
 
     last = r.lastIndex;
-    let match = m[0];
     result.push(m[0]);
   } while (1);
 
