@@ -1,10 +1,6 @@
 import * as assert from "node:assert/strict";
 
 function splitWithEOL(s) {
-  return find(s);
-}
-
-function find(s) {
   let r = /((?!\n).*)\n/y;
   let result = [];
   let last=0;
@@ -27,8 +23,6 @@ function find(s) {
 
   return result;
 }
-
-assert.deepEqual(["a\n","b"],find("a\nb"));
 
 assert.deepEqual([""], splitWithEOL(""));
 assert.deepEqual(["a"], splitWithEOL("a"));
