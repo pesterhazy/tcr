@@ -1,7 +1,7 @@
 import * as assert from "node:assert/strict";
 
 function splitWithEOL(s) {
-  return s.split(/\n/);
+  return find(s);
 }
 
 function find(s) {
