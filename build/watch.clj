@@ -1,4 +1,9 @@
-(require '[babashka.process :refer [process shell]])
+(require '[babashka.process :refer [process check]])
+
+(defn shell [v]
+  (assert (vector? v))
+  (-> (process {:inherit true} v)
+      check))
 
 (def !watch-process (atom nil))
 
@@ -12,7 +17,7 @@
 (defn act []
   (println "Running...")
   (try
-    (shell "node tcr.mjs")
+    (shell ["node" "tcr.mjs"])
     (catch clojure.lang.ExceptionInfo e
       (when-not (:exit (ex-data e))
         (throw e))
@@ -20,12 +25,12 @@
     true))
 
 (defn revert []
-  (shell "git reset --hard"))
+  (shell ["git" "reset" "--hard"]))
 
 (defn commit []
-  (shell "git add tcr.mjs")
+  (shell ["git" "add" "tcr.mjs"])
   (try
-    (shell "git commit -m autocommit")
+    (shell ["git" "commit" "-m" "autocommit"])
     (catch clojure.lang.ExceptionInfo e
       (when-not (:exit (ex-data e))
         (throw e)))))
