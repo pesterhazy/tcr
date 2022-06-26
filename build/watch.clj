@@ -17,7 +17,8 @@
     (future
       (loop []
         (.readLine rdr)
-        (.put q ".")
+        (when (zero? (.size q))
+          (.put q "."))
         (recur)))
     {:process proc
      :q q}))
@@ -28,15 +29,15 @@
 (defn reset-watcher [waiter]
   (.clear (:q waiter)))
 
-(defn act []
+(defn test! []
   (println "Running...")
   (sh?! ["node" "tcr.mjs"]))
 
-(defn revert []
+(defn revert! []
   (println "Resetting...")
   (sh! ["git" "checkout" "--" "tcr.mjs"]))
 
-(defn commit []
+(defn commit! []
   (sh! ["git" "add" "tcr.mjs"])
   (sh?! ["git" "commit" "-m" "autocommit"]))
 
@@ -49,12 +50,12 @@
 (defn main []
   (let [watcher (make-watcher)]
     (loop []
-      (let [result (act)]
+      (let [result (test!)]
         (notify result)
         (if result
-          (commit)
+          (commit!)
           (do
-            (revert)
+            (revert!)
             (Thread/sleep 600)
             (reset-watcher watcher))))
       (println "Waiting...")
