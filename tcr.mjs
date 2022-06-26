@@ -1,7 +1,7 @@
 import * as assert from "node:assert/strict";
 
 function splitWithEOL(s) {
-  let r = /((?!\n).*)\n/y;
+  let r = /((?!\r?\n).*)\r?\n/y;
   let result = [];
   let last=0;
 
@@ -26,5 +26,5 @@ function splitWithEOL(s) {
 
 assert.deepEqual([""], splitWithEOL(""));
 assert.deepEqual(["a"], splitWithEOL("a"));
-assert.deepEqual(["a\n", "b"], splitWithEOL("a\nb"));
+assert.deepEqual(["a\r\n", "b"], splitWithEOL("a\r\nb"));
 console.log("ok");
