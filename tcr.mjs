@@ -28,4 +28,5 @@ assert.deepEqual([""], splitWithEOL(""));
 assert.deepEqual(["a"], splitWithEOL("a"));
 assert.deepEqual(["a\n", "b"], splitWithEOL("a\nb"));
 assert.deepEqual(["a\r\n", "b"], splitWithEOL("a\r\nb"));
+assert.deepEqual(["one\n","two\r\n","three\r\n"], splitWithEOL("one\ntwo\r\nthree\r\n"));
 console.log("ok");
