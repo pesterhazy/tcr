@@ -11,10 +11,12 @@ function rpn(s) {
       break;
 
     case "-":
-      if (args.length === 2)
+      if (args.length === 2) {
         args = [args[0]-args[1]];
-      else
+      }
+      else {
         throw new Error("Must be binary");
+      }
 
       break;
 
