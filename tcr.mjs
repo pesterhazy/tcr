@@ -11,7 +11,7 @@ function rpn(s) {
       break;
 
     case "*":
-      args = [args.reduce((a,b) => a*b, 0)];
+      args = [args.reduce((a,b) => a*b, 1)];
       break;
 
     case "-":
