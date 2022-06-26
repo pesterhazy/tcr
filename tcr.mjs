@@ -1,6 +1,7 @@
 import * as assert from "node:assert/strict";
 
 function rpn(s) {
+  let tokens = s.split(/ /);
   return 3;
 }
 
