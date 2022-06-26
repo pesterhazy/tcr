@@ -1,4 +1,5 @@
 (require '[babashka.process :refer [process check]])
+(require '[clojure.java.io :as io])
 
 (defn sh! [v]
   (assert (vector? v))
@@ -15,8 +16,7 @@
   (when-not @!watch-process
     (reset! !watch-process (process ["watchexec" "-p" "-w" "tcr.mjs" "echo" "."])))
 
-  (binding [*in* (clojure.java.io/reader (:out @!watch-process))]
-    (read-line)))
+  (.readLine (io/reader (:out @!watch-process))))
 
 (defn act []
   (println "Running...")
