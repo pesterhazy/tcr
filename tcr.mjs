@@ -10,6 +10,10 @@ function rpn(s) {
       args = [args.reduce((a,b) => a+b, 0)];
       break;
 
+    case "-":
+      args = [args[0]-args[1]];
+      break;
+
     default:
       args.push(parseInt(token));
     }
@@ -19,3 +23,4 @@ function rpn(s) {
 
 assert.deepEqual(rpn("1 2 +"), 3);
 assert.deepEqual(rpn("1 2 + 3 +"), 6);
+assert.deepEqual(rpn("2 1 -"), 1);
