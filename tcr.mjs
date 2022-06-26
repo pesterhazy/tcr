@@ -14,6 +14,9 @@ function rpn(s) {
       if (args.length === 2) {
         args = [args[0]-args[1]];
       }
+      else if (args.length === 1) {
+        args = [-args[0]];
+      }
       else {
         throw new Error("Must be binary");
       }
